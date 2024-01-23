@@ -30,7 +30,8 @@ export const createContacto = async (contactoData) => {
     const response = await api.post("/PersonaContactos", contactoData);
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error al crear el contacto:", error);
+    throw error;
   }
 };
 
@@ -51,13 +52,13 @@ export const deleteContacto = async (id) => {
   }
 };
 
-// Personas Controller
 export const getAllPersonas = async () => {
   try {
     const response = await api.get("/Personas");
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error al obtener todas las personas:", error);
+    throw error; // Propaga el error para manejarlo en la llamada a la función
   }
 };
 
@@ -73,9 +74,10 @@ export const getPersonaByCedula = async (cedula) => {
 export const createPersona = async (personaData) => {
   try {
     const response = await api.post("/Personas", personaData);
-    return response.data;
+    return response.data; // Asegúrate de que esto incluye el ID
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
